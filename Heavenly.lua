@@ -1728,6 +1728,32 @@ end
 
 function Heavenly:Window(config)
 	config = config or {}
+	
+	local targets = {game:GetService("CoreGui"), LocalPlayer.PlayerGui}
+	for _, target in pairs(targets) do
+		for _, guiName in ipairs({"HeavenlyUI", "HeavenlyNotifications", "HeavenlyNotificationsClassic", "HeavenlyKeybindList", "HeavenlyTopbar", "HeavenlyRadial"}) do
+			local guiInstance = target:FindFirstChild(guiName)
+			if guiInstance then guiInstance:Destroy() end
+		end
+	end
+	pcall(function()
+		local protectedGui = gethui()
+		for _, guiName in ipairs({"HeavenlyUI", "HeavenlyNotifications", "HeavenlyNotificationsClassic", "HeavenlyKeybindList", "HeavenlyTopbar", "HeavenlyRadial"}) do
+			local guiInstance = protectedGui:FindFirstChild(guiName)
+			if guiInstance then guiInstance:Destroy() end
+		end
+	end)
+	-- rreset state tabls 
+	table.clear(Heavenly.Binds)
+	table.clear(Heavenly._Tabs)
+	table.clear(Heavenly._ElementRegistry)
+	table.clear(notifStack)
+	Heavenly._BindListGui = nil
+	Heavenly._TopbarGui = nil
+	Heavenly._RadialGui = nil
+	Heavenly._MainWindowRef = nil
+	Heavenly._RestoreRef = nil
+	Heavenly._MinimizedRef = nil
 
 	local windowName = config.Name or "HeavenlyUI"
 	local theme = Themes[config.Theme] or Themes.Dark
