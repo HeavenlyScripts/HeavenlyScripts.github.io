@@ -157,7 +157,7 @@ local ModifierNames = {
 	[Enum.KeyCode.RightControl] = "Ctrl",
 	[Enum.KeyCode.LeftAlt] = "Alt",
 	[Enum.KeyCode.RightAlt] = "Alt",
-	[Enum.KeyCode.LeftMeta] = "Meta", -- win butons??
+	[Enum.KeyCode.LeftMeta] = "Meta",
 	[Enum.KeyCode.RightMeta] = "Meta",
 }
 
@@ -189,7 +189,7 @@ local function secGui(gui)
 	pcall(function()
 		if syn and syn.protect_gui then
 			syn.protect_gui(gui)
-			gui.Parent = game:GetService("CoreGui") -- idek if this works i hope so
+			gui.Parent = game:GetService("CoreGui")
 			parented = true
 		end
 	end)
@@ -414,158 +414,6 @@ Animations.Unfold = function(mainWindow, screenGui, theme, startupText, startupI
 	mainWindow.Position = UDim2.new(0.5, -finalWidth / 2, 0.5, -finalHeight / 2)
 	mainWindow.ClipsDescendants = false
 end
---[[
-local notifGuiClassic = nil
-local function getNotifGuiClassic()
-	if notifGuiClassic and notifGuiClassic.Parent then return notifGuiClassic end
-	local screenGui = Instance.new("ScreenGui")
-	screenGui.Name = "HeavenlyNotificationsClassic"
-	screenGui.ResetOnSpawn = false
-	screenGui.DisplayOrder = 999
-	secGui(screenGui)
-	local holder = Instance.new("Frame")
-	holder.Name = "Holder"
-	holder.BackgroundTransparency = 1
-	holder.AnchorPoint = Vector2.new(1, 1)
-	holder.Position = UDim2.new(1, -25, 1, -25)
-	holder.Size = UDim2.new(0, 300, 1, -25)
-	holder.Parent = screenGui
-	local holderLayout = addListLayout(holder, 5)
-	holderLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-	holderLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
-	notifGuiClassic = screenGui
-	return screenGui
-end
-
-function Heavenly:NotifyClassic(configOrText, durationArg)
-	local title, content, image, duration, barColor
-	if type(configOrText) == "table" then
-		title = configOrText.Name or "Notification"
-		content = configOrText.Content or ""
-		image = configOrText.Image or "rbxassetid://4384403532"
-		duration = configOrText.Time or 5
-		barColor = configOrText.DurationColor or Color3.fromRGB(0, 170, 255)
-	else
-		title = tostring(configOrText or "Notification")
-		content = ""
-		image = "rbxassetid://4384403532"
-		duration = durationArg or 5
-		barColor = Color3.fromRGB(0, 170, 255)
-	end
-	local screenGui = getNotifGuiClassic()
-	local holder = screenGui:FindFirstChild("Holder")
-	if not holder then return end
-	task.spawn(function()
-		local sideBarWidth = 6
-		local sideBarGap = 6
-		local wrapper = Instance.new("Frame")
-		wrapper.BackgroundTransparency = 1
-		wrapper.Size = UDim2.new(1, 0, 0, 0)
-		wrapper.ClipsDescendants = true
-		wrapper.Parent = holder
-		local card = Instance.new("Frame")
-		card.BackgroundColor3 = Color3.fromRGB(28, 28, 30)
-		card.BorderSizePixel = 0
-		card.Size = UDim2.new(1, -(sideBarWidth + sideBarGap), 0, 0)
-		card.AutomaticSize = Enum.AutomaticSize.Y
-		card.Position = UDim2.new(1, 10, 0, 0)
-		card.Parent = wrapper
-		addCorner(card, 0, 8)
-		addStroke(card, Color3.fromRGB(55, 55, 60), 1)
-		local innerPadding = Instance.new("UIPadding")
-		innerPadding.PaddingLeft = UDim.new(0, 12)
-		innerPadding.PaddingRight = UDim.new(0, 12)
-		innerPadding.PaddingTop = UDim.new(0, 11)
-		innerPadding.PaddingBottom = UDim.new(0, 11)
-		innerPadding.Parent = card
-		local headerRow = Instance.new("Frame")
-		headerRow.BackgroundTransparency = 1
-		headerRow.Size = UDim2.new(1, 0, 0, 18)
-		headerRow.Parent = card
-		local iconLabel = Instance.new("ImageLabel")
-		iconLabel.Image = image
-		iconLabel.BackgroundTransparency = 1
-		iconLabel.ImageColor3 = Color3.fromRGB(255, 255, 255)
-		iconLabel.AnchorPoint = Vector2.new(0, 0.5)
-		iconLabel.Size = UDim2.new(0, 15, 0, 15)
-		iconLabel.Position = UDim2.new(0, 0, 0.5, 0)
-		iconLabel.ZIndex = 2
-		iconLabel.Parent = headerRow
-		local titleLabel = Instance.new("TextLabel")
-		titleLabel.Text = title
-		titleLabel.Font = Enum.Font.GothamBold
-		titleLabel.TextSize = 14
-		titleLabel.TextColor3 = Color3.fromRGB(235, 235, 235)
-		titleLabel.BackgroundTransparency = 1
-		titleLabel.TextXAlignment = Enum.TextXAlignment.Left
-		titleLabel.AnchorPoint = Vector2.new(0, 0.5)
-		titleLabel.Size = UDim2.new(1, -22, 1, 0)
-		titleLabel.Position = UDim2.new(0, 21, 0.5, 0)
-		titleLabel.ZIndex = 2
-		titleLabel.Parent = headerRow
-		if content ~= "" then
-			local dividerLine = Instance.new("Frame")
-			dividerLine.BackgroundColor3 = Color3.fromRGB(50, 50, 55)
-			dividerLine.BorderSizePixel = 0
-			dividerLine.Size = UDim2.new(1, 0, 0, 1)
-			dividerLine.Position = UDim2.new(0, 0, 0, 23)
-			dividerLine.ZIndex = 2
-			dividerLine.Parent = card
-			local contentLabel = Instance.new("TextLabel")
-			contentLabel.Text = content
-			contentLabel.Font = Enum.Font.Gotham
-			contentLabel.TextSize = 13
-			contentLabel.TextColor3 = Color3.fromRGB(150, 150, 158)
-			contentLabel.BackgroundTransparency = 1
-			contentLabel.TextXAlignment = Enum.TextXAlignment.Left
-			contentLabel.TextYAlignment = Enum.TextYAlignment.Top
-			contentLabel.TextWrapped = true
-			contentLabel.AutomaticSize = Enum.AutomaticSize.Y
-			contentLabel.Size = UDim2.new(1, 0, 0, 0)
-			contentLabel.Position = UDim2.new(0, 0, 0, 29)
-			contentLabel.ZIndex = 2
-			contentLabel.Parent = card
-		end
-		local timerTrack = Instance.new("Frame")
-		timerTrack.BackgroundColor3 = Color3.fromRGB(45, 45, 50)
-		timerTrack.BorderSizePixel = 0
-		timerTrack.AnchorPoint = Vector2.new(1, 0)
-		timerTrack.Size = UDim2.new(0, sideBarWidth, 0, 0)
-		timerTrack.Position = UDim2.new(1, 0, 0, 0)
-		timerTrack.ClipsDescendants = true
-		timerTrack.ZIndex = 2
-		timerTrack.Parent = wrapper
-		addCorner(timerTrack, 1, 0)
-		local timerFill = Instance.new("Frame")
-		timerFill.BackgroundColor3 = barColor
-		timerFill.BorderSizePixel = 0
-		timerFill.AnchorPoint = Vector2.new(0, 0)
-		timerFill.Size = UDim2.new(1, 0, 1, 0)
-		timerFill.ZIndex = 3
-		timerFill.Parent = timerTrack
-		addCorner(timerFill, 1, 0)
-		task.defer(function()
-			local cardHeight = card.AbsoluteSize.Y
-			wrapper.Size = UDim2.new(1, 0, 0, cardHeight + 5)
-			timerTrack.Size = UDim2.new(0, sideBarWidth, 0, cardHeight)
-			tweenObj(card, 0.4, Enum.EasingStyle.Quint, Enum.EasingDirection.Out,
-				{Position = UDim2.new(0, 0, 0, 0)})
-		end)
-		task.wait(0.45)
-		local drainDuration = math.max(duration - 0.45, 0.1)
-		tweenObj(timerFill, drainDuration, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,
-			{Size = UDim2.new(1, 0, 0, 0)})
-		task.wait(drainDuration)
-		wrapper.ClipsDescendants = false
-		tweenObj(card, 0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.In, {Position = UDim2.new(1, 400, 0, 0)})
-		tweenObj(timerTrack, 0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.In, {Position = UDim2.new(1, 400, 0, 0)})
-		task.wait(0.38)
-		wrapper.ClipsDescendants = true
-		tweenObj(wrapper, 0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, {Size = UDim2.new(1, 0, 0, 0)})
-		task.wait(0.28)
-		wrapper:Destroy()
-	end)
-end --]] -- This "Classicc" is the same als :Notify i think? kept in there just in case
 
 local notifGui = nil
 local notifStack = {}
@@ -587,7 +435,7 @@ local function getNotifGui()
 	return screenGui
 end
 
-local function refNotifs(skipIndex) 
+local function refNotifs(skipIndex)
 	local screenHeight = workspace.CurrentCamera and workspace.CurrentCamera.ViewportSize.Y or 768
 	local currentY = screenHeight - notifBottomMargin
 
@@ -780,7 +628,7 @@ local function saveFlags(folder, file)
 	pcall(function()
 		if not isfolder(folder) then makefolder(folder) end
 		local saveData = {}
-		for key, flagObj in pairs(Heavenly.Flags) do -- this is all red idk i dont think it will work :(
+		for key, flagObj in pairs(Heavenly.Flags) do
 			if flagObj.Save then saveData[key] = flagObj.Value end
 		end
 		writefile(folder .. "/" .. file .. ".json", HttpService:JSONEncode(saveData))
@@ -874,7 +722,7 @@ function Heavenly:Topbar()
 		end)
 	end
 
-	if MultipleRows then -- after 6 icons give a new row + button to expand
+	if MultipleRows then
 		local expandBtn = Instance.new("TextButton")
 		expandBtn.Text = "..."
 		expandBtn.Font = Enum.Font.GothamBold
@@ -892,21 +740,21 @@ function Heavenly:Topbar()
 		addStroke(expandBtn, strokeColor, 1)
 
 		expandBtn.MouseEnter:Connect(function()
-			tweenObj(expandBtn, 0.15, nil, nil, {TextColor3 = Color3.fromRGB(210, 210, 235)}) 
+			tweenObj(expandBtn, 0.15, nil, nil, {TextColor3 = Color3.fromRGB(210, 210, 235)})
 		end)
 		expandBtn.MouseLeave:Connect(function()
 			tweenObj(expandBtn, 0.15, nil, nil, {TextColor3 = Color3.fromRGB(130, 130, 155)})
 		end)
 		expandBtn.MouseButton1Click:Connect(function()
 			isExpanded = not isExpanded
-			expandBtn.Text = isExpanded and "x" or "..." -- ic
+			expandBtn.Text = isExpanded and "x" or "..."
 			local targetHeight = isExpanded and expandedHeight or collapsedHeight
 			tweenObj(topbarPanel, 0.28, Enum.EasingStyle.Quint, Enum.EasingDirection.Out,
 				{Size = UDim2.new(0, panelWidth, 0, targetHeight)})
 		end)
 	end
 
-	local activeTooltip = nil -- tab name above icon
+	local activeTooltip = nil
 
 	local function showTooltip(tabName, absoluteX, absoluteY)
 		if activeTooltip then
@@ -915,7 +763,7 @@ function Heavenly:Topbar()
 		end
 		local tooltip = Instance.new("TextLabel")
 		tooltip.Text = tabName
-		tooltip.Font = Enum.Font.GothamSemibold -- red underline?
+		tooltip.Font = Enum.Font.GothamSemibold
 		tooltip.TextSize = 11
 		tooltip.TextColor3 = Color3.fromRGB(220, 220, 235)
 		tooltip.BackgroundColor3 = Color3.fromRGB(18, 18, 26)
@@ -938,7 +786,7 @@ function Heavenly:Topbar()
 
 	local function hideTooltip()
 		if activeTooltip then
-			activeTooltip:Destroy() -- dont hide or buggy
+			activeTooltip:Destroy()
 			activeTooltip = nil
 		end
 	end
@@ -986,7 +834,7 @@ function Heavenly:Topbar()
 			hideTooltip()
 			tweenObj(tabButton, 0.07, nil, nil, {BackgroundColor3 = accentColor})
 			tweenObj(tabButton, 0.22, nil, nil, {BackgroundColor3 = buttonBgColor})
-			if Heavenly._RestoreRef then pcall(Heavenly._RestoreRef) end -- sum other stuff
+			if Heavenly._RestoreRef then pcall(Heavenly._RestoreRef) end
 			pcall(tabEntry.selectFn)
 		end)
 	end
@@ -1029,7 +877,7 @@ function Heavenly:Topbar()
 	addCorner(searchPanel, 0, 8)
 	addStroke(searchPanel, strokeColor, 1)
 
-	local function syncPanel() -- helper cuz i cant do it any other wasy
+	local function syncPanel()
 		searchPanel.Position = UDim2.new(
 			0, topbarPanel.AbsolutePosition.X,
 			0, topbarPanel.AbsolutePosition.Y + topbarPanel.AbsoluteSize.Y + 6
@@ -1081,7 +929,7 @@ function Heavenly:Topbar()
 			{Size = UDim2.new(0, panelWidth, 0, collapsedHeight + resultsHeight)})
 	end)
 
-	local function buildIndex() -- for search
+	local function buildIndex()
 		local index = {}
 		local seen = {}
 		for flagName, flagObj in pairs(Heavenly.Flags) do
@@ -1510,7 +1358,7 @@ function Heavenly:Radial()
 			return
 		end
 
-		local mouseAngle = math.atan2(deltaY, deltaX)--x7z ur a kat
+		local mouseAngle = math.atan2(deltaY, deltaX)
 		local normalizedAngle = ((mouseAngle + math.pi / 2) % twoPi)
 		local segmentIndex = math.floor(normalizedAngle / segmentAngle) % tabCount + 1
 		setHovered(segmentIndex)
@@ -1728,7 +1576,7 @@ end
 
 function Heavenly:Window(config)
 	config = config or {}
-	
+
 	local targets = {game:GetService("CoreGui"), LocalPlayer.PlayerGui}
 	for _, target in pairs(targets) do
 		for _, guiName in ipairs({"HeavenlyUI", "HeavenlyNotifications", "HeavenlyNotificationsClassic", "HeavenlyKeybindList", "HeavenlyTopbar", "HeavenlyRadial"}) do
@@ -1743,7 +1591,6 @@ function Heavenly:Window(config)
 			if guiInstance then guiInstance:Destroy() end
 		end
 	end)
-	-- rreset state tabls 
 	table.clear(Heavenly.Binds)
 	table.clear(Heavenly._Tabs)
 	table.clear(Heavenly._ElementRegistry)
@@ -1758,16 +1605,19 @@ function Heavenly:Window(config)
 	local windowName = config.Name or "HeavenlyUI"
 	local theme = Themes[config.Theme] or Themes.Dark
 	local doStartup = config.Startup or false
-	local startupAnim = config.StartupAnim or "Blob"
+	local startupAnim = config.StartupAnim or "Fade"
 	local startupText = config.StartupText or ""
 	local startupIcon = config.StartupIcon or ""
 	local configFolder = config.ConfigFolder or windowName
 	local configFile = config.Config or tostring(game.GameId)
 	local doSaveConfig = config.SaveConfig or false
 	local closeCallback = config.CloseCallback or function() end
-	local showPlayerName = (config.PlayerName ~= false) -- deprecated
+	local showPlayerName = (config.PlayerName ~= false)
 	local showDisplayName = (config.ShowDisplayName == true)
 	local showUsername = (config.ShowUsername == true)
+	local reopenKey    = config.ReopenKey    or Enum.KeyCode.RightShift
+	local closeAnim    = config.CloseAnim    or "Shrink"
+	local minimizeAnim = config.MinimizeAnim or "Slide"
 
 	Heavenly.SaveCfg = doSaveConfig
 	Heavenly.Folder = configFolder
@@ -1805,11 +1655,14 @@ function Heavenly:Window(config)
 	mainWindow.Parent = screenGui
 	addCorner(mainWindow, 0, 10)
 
+	local windowStroke = addStroke(mainWindow, theme.Stroke, 1.5)
+
 	Heavenly._MainWindowRef = mainWindow
 
 	local topBar = Instance.new("Frame")
 	topBar.BackgroundTransparency = 1
 	topBar.Size = UDim2.new(1, 0, 0, 50)
+	topBar.ZIndex = 3
 	topBar.Parent = mainWindow
 
 	local topBarDivider = Instance.new("Frame")
@@ -1908,8 +1761,51 @@ function Heavenly:Window(config)
 	local dragHandle = Instance.new("Frame")
 	dragHandle.BackgroundTransparency = 1
 	dragHandle.Size = UDim2.new(1, 0, 0, 50)
+	dragHandle.ZIndex = 3
 	dragHandle.Parent = mainWindow
 	makeDraggable(dragHandle, mainWindow)
+
+	local toastScreenGui = Instance.new("ScreenGui")
+	toastScreenGui.Name = "HeavenlyToasts"
+	toastScreenGui.ResetOnSpawn = false
+	toastScreenGui.DisplayOrder = 998
+	toastScreenGui.IgnoreGuiInset = true
+	toastScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	secGui(toastScreenGui)
+
+	local lockOverlay = Instance.new("Frame")
+	lockOverlay.Name = "LockOverlay"
+	lockOverlay.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	lockOverlay.BackgroundTransparency = 1
+	lockOverlay.BorderSizePixel = 0
+	lockOverlay.Size = UDim2.new(1, 0, 1, 0)
+	lockOverlay.ZIndex = 50
+	lockOverlay.Visible = false
+	lockOverlay.Parent = mainWindow
+	addCorner(lockOverlay, 0, 10)
+
+	local lockLabel = Instance.new("TextLabel")
+	lockLabel.Text = "Loading..."
+	lockLabel.Font = Enum.Font.GothamBold
+	lockLabel.TextSize = 16
+	lockLabel.TextColor3 = Color3.fromRGB(220, 220, 220)
+	lockLabel.BackgroundTransparency = 1
+	lockLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+	lockLabel.Size = UDim2.new(0.7, 0, 0, 24)
+	lockLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
+	lockLabel.TextXAlignment = Enum.TextXAlignment.Center
+	lockLabel.ZIndex = 51
+	lockLabel.Parent = lockOverlay
+
+	local lockInputBlocker = Instance.new("TextButton")
+	lockInputBlocker.Text = ""
+	lockInputBlocker.AutoButtonColor = false
+	lockInputBlocker.BackgroundTransparency = 1
+	lockInputBlocker.BorderSizePixel = 0
+	lockInputBlocker.Size = UDim2.new(1, 0, 1, 0)
+	lockInputBlocker.ZIndex = 52
+	lockInputBlocker.Visible = false
+	lockInputBlocker.Parent = mainWindow
 
 	local sidebar = Instance.new("Frame")
 	sidebar.Name = "Sidebar"
@@ -1917,6 +1813,7 @@ function Heavenly:Window(config)
 	sidebar.BorderSizePixel = 0
 	sidebar.Size = UDim2.new(0, 150, 1, -50)
 	sidebar.Position = UDim2.new(0, 0, 0, 50)
+	sidebar.ZIndex = 3
 	sidebar.Parent = mainWindow
 	addCorner(sidebar, 0, 10)
 
@@ -2065,11 +1962,6 @@ function Heavenly:Window(config)
 				task.delay(delayTime, function()
 					tweenObj(tabData.btn.Title, 0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out,
 						{TextTransparency = 1})
-					task.delay(0.15, function()
-						tabData.btn.Ico.AnchorPoint = Vector2.new(0.5, 0.5)
-						tweenObj(tabData.btn.Ico, 0.45, Enum.EasingStyle.Quint, Enum.EasingDirection.Out,
-							{Position = UDim2.new(0.5, 0, 0.5, 0)})
-					end)
 				end)
 			end
 			if showDisplayName then
@@ -2117,56 +2009,164 @@ function Heavenly:Window(config)
 		end
 	end)
 
-	minimizeButton.MouseButton1Up:Connect(function()
-		if isMinimized then
+	local function animClose(onDone)
+		local origPos  = mainWindow.Position
+		local origSize = mainWindow.Size
+
+		local function finish()
+			mainWindow.Visible = false
+			mainWindow.Size    = UDim2.new(0, 615, 0, 344)
+			mainWindow.Position = origPos
+			mainWindow.ClipsDescendants = false
+			onDone()
+		end
+
+		if closeAnim == "Shrink" then
+			mainWindow.ClipsDescendants = true
+			TweenService:Create(mainWindow,
+				TweenInfo.new(0.6, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
+				{
+					Size = UDim2.new(0, 0, 0, 0),
+					Position = UDim2.new(
+						origPos.X.Scale,
+						origPos.X.Offset + origSize.X.Offset,
+						origPos.Y.Scale,
+						origPos.Y.Offset
+					),
+				}):Play()
+			task.delay(0.65, finish)
+
+		elseif closeAnim == "Blob" then
+			mainWindow.ClipsDescendants = true
+			local cx = origPos.X.Offset + origSize.X.Offset / 2
+			local cy = origPos.Y.Offset + origSize.Y.Offset / 2
+			TweenService:Create(mainWindow,
+				TweenInfo.new(0.65, Enum.EasingStyle.Back, Enum.EasingDirection.In),
+				{
+					Size = UDim2.new(0, 0, 0, 0),
+					Position = UDim2.new(origPos.X.Scale, cx, origPos.Y.Scale, cy),
+				}):Play()
+			task.delay(0.70, finish)
+
+		else
+			finish()
+		end
+	end
+
+	local function animMinimize(onDone)
+		local targetWidth = topBarlbl.TextBounds.X + 140
+		mainWindow.ClipsDescendants = true
+		topBarDivider.Visible = false
+		sidebar.Visible = false
+
+		if minimizeAnim == "Slide" then
+			tweenObj(mainWindow, 0.55, Enum.EasingStyle.Quint, Enum.EasingDirection.Out,
+				{Size = UDim2.new(0, targetWidth, 0, 50)})
+			task.delay(0.58, onDone)
+
+		elseif minimizeAnim == "Blob" then
+			TweenService:Create(mainWindow,
+				TweenInfo.new(0.6, Enum.EasingStyle.Back, Enum.EasingDirection.In),
+				{Size = UDim2.new(0, targetWidth, 0, 50)}):Play()
+			task.delay(0.65, onDone)
+
+		else
+			mainWindow.Size = UDim2.new(0, targetWidth, 0, 50)
+			onDone()
+		end
+	end
+
+	local function animRestore(onDone)
+		if minimizeAnim == "Slide" then
+			mainWindow.ClipsDescendants = true
+			local t = TweenService:Create(mainWindow,
+				TweenInfo.new(0.55, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+				{Size = UDim2.new(0, 615, 0, 344)})
+			t:Play()
+			t.Completed:Connect(function()
+				mainWindow.ClipsDescendants = false
+				onDone()
+			end)
+
+		elseif minimizeAnim == "Blob" then
+			mainWindow.ClipsDescendants = true
+			local t = TweenService:Create(mainWindow,
+				TweenInfo.new(0.65, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+				{Size = UDim2.new(0, 615, 0, 344)})
+			t:Play()
+			t.Completed:Connect(function()
+				mainWindow.ClipsDescendants = false
+				onDone()
+			end)
+
+		else
 			mainWindow.Size = UDim2.new(0, 615, 0, 344)
 			mainWindow.ClipsDescendants = false
-			sidebar.Visible = true
-			topBarDivider.Visible = true
-			minimizeIcon.Image = "rbxassetid://7072719338"
-		else
-			mainWindow.ClipsDescendants = true
-			topBarDivider.Visible = false
-			sidebar.Visible = false
-			minimizeIcon.Image = "rbxassetid://7072720870"
-			mainWindow.Size = UDim2.new(0, topBarlbl.TextBounds.X + 140, 0, 50)
+			onDone()
 		end
-		isMinimized = not isMinimized
+	end
+
+	minimizeButton.MouseButton1Up:Connect(function()
+		if isMinimized then
+			animRestore(function()
+				sidebar.Visible = true
+				topBarDivider.Visible = true
+				minimizeIcon.Image = "rbxassetid://7072719338"
+			end)
+			isMinimized = false
+		else
+			minimizeIcon.Image = "rbxassetid://7072720870"
+			animMinimize(function() end)
+			isMinimized = true
+		end
 	end)
 
 	closeButton.MouseButton1Up:Connect(function()
-		mainWindow.Visible = false
-		isHidden = true
-		pcall(closeCallback)
-		Heavenly:Notify({
-			Name = "Interface Hidden",
-			Content = "Press RightShift to reopen.",
-			Time = 5,
-		})
+		animClose(function()
+			isHidden = true
+			pcall(closeCallback)
+			Heavenly:Notify({
+				Name = "Interface Hidden",
+				Content = "Press " .. tostring(reopenKey.Name) .. " to reopen.",
+				Time = 5,
+			})
+		end)
 	end)
 
 	UserInputService.InputBegan:Connect(function(input, gameProcessed)
 		if gameProcessed then return end
-		if input.KeyCode == Enum.KeyCode.RightShift and isHidden then
+		if input.KeyCode ~= reopenKey then return end
+		if not isHidden then return end
+		isHidden = false
+		isMinimized = false
+		if doStartup and Animations[startupAnim] then
+			task.spawn(function()
+				Animations[startupAnim](mainWindow, screenGui, theme, startupText, startupIcon)
+			end)
+		else
 			mainWindow.Visible = true
-			isHidden = false
-			isMinimized = false
 		end
 	end)
 
 	local function restoreWindow()
 		if isHidden then
-			mainWindow.Visible = true
 			isHidden = false
 			isMinimized = false
+			if doStartup and Animations[startupAnim] then
+				task.spawn(function()
+					Animations[startupAnim](mainWindow, screenGui, theme, startupText, startupIcon)
+				end)
+			else
+				mainWindow.Visible = true
+			end
 			return
 		end
 		if isMinimized then
-			mainWindow.Size = UDim2.new(0, 615, 0, 344)
-			mainWindow.ClipsDescendants = false
-			sidebar.Visible = true
-			topBarDivider.Visible = true
-			minimizeIcon.Image = "rbxassetid://7072719338"
+			animRestore(function()
+				sidebar.Visible = true
+				topBarDivider.Visible = true
+				minimizeIcon.Image = "rbxassetid://7072719338"
+			end)
 			isMinimized = false
 		end
 	end
@@ -2178,7 +2178,7 @@ function Heavenly:Window(config)
 		if activeTabButton then
 			activeTabButton.Title.Font = Enum.Font.GothamSemibold
 			tweenObj(activeTabButton.Ico, 0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, {ImageTransparency = 0.4})
-			tweenObj(activeTabButton.Title, 0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, {TextTransparency = 0.4})
+			tweenObj(activeTabButton.Title, 0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, {TextTransparency = sidebarExpanded and 0.4 or 1})
 		end
 		activeTabPage = page
 		activeTabButton = button
@@ -2191,11 +2191,145 @@ function Heavenly:Window(config)
 		if button then
 			button.Title.Font = Enum.Font.GothamBlack
 			tweenObj(button.Ico, 0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, {ImageTransparency = 0})
-			tweenObj(button.Title, 0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, {TextTransparency = 0})
+			tweenObj(button.Title, 0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, {TextTransparency = sidebarExpanded and 0 or 1})
 		end
 	end
 
 	local windowObject = {}
+
+	function windowObject:Toast(text, icon)
+		text = tostring(text or "")
+		task.spawn(function()
+			local topY = Heavenly.ShowTopbar and (14 + 48 + 8) or 14
+
+			local toast = Instance.new("Frame")
+			toast.BackgroundColor3 = Color3.fromRGB(24, 24, 30)
+			toast.BorderSizePixel = 0
+			toast.AutomaticSize = Enum.AutomaticSize.X
+			toast.Size = UDim2.new(0, 0, 0, 32)
+			toast.AnchorPoint = Vector2.new(0.5, 0)
+			toast.Position = UDim2.new(0.5, 0, 0, topY - 8)
+			toast.BackgroundTransparency = 1
+			toast.ZIndex = 21
+			toast.Parent = toastScreenGui
+			addCorner(toast, 0, 16)
+			addStroke(toast, Color3.fromRGB(55, 55, 72), 1)
+
+			local innerRow = Instance.new("Frame")
+			innerRow.BackgroundTransparency = 1
+			innerRow.AutomaticSize = Enum.AutomaticSize.X
+			innerRow.Size = UDim2.new(0, 0, 1, 0)
+			innerRow.Position = UDim2.new(0, 0, 0, 0)
+			innerRow.ZIndex = 22
+			innerRow.Parent = toast
+
+			local rowLayout = Instance.new("UIListLayout")
+			rowLayout.FillDirection = Enum.FillDirection.Horizontal
+			rowLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+			rowLayout.HorizontalAlignment = Enum.HorizontalAlignment.Left
+			rowLayout.Padding = UDim.new(0, 6)
+			rowLayout.SortOrder = Enum.SortOrder.LayoutOrder
+			rowLayout.Parent = innerRow
+
+			local rowPad = Instance.new("UIPadding")
+			rowPad.PaddingLeft = UDim.new(0, 12)
+			rowPad.PaddingRight = UDim.new(0, 14)
+			rowPad.PaddingTop = UDim.new(0, 0)
+			rowPad.PaddingBottom = UDim.new(0, 0)
+			rowPad.Parent = innerRow
+
+			if icon and icon ~= "" then
+				local ico = Instance.new("ImageLabel")
+				ico.Image = icon
+				ico.BackgroundTransparency = 1
+				ico.ImageColor3 = Color3.fromRGB(190, 190, 210)
+				ico.Size = UDim2.new(0, 14, 0, 14)
+				ico.ZIndex = 22
+				ico.LayoutOrder = 1
+				ico.Parent = innerRow
+			end
+
+			local lbl = Instance.new("TextLabel")
+			lbl.Text = text
+			lbl.Font = Enum.Font.GothamSemibold
+			lbl.TextSize = 13
+			lbl.TextColor3 = Color3.fromRGB(220, 220, 230)
+			lbl.BackgroundTransparency = 1
+			lbl.AutomaticSize = Enum.AutomaticSize.X
+			lbl.Size = UDim2.new(0, 0, 1, 0)
+			lbl.TextXAlignment = Enum.TextXAlignment.Left
+			lbl.ZIndex = 22
+			lbl.LayoutOrder = 2
+			lbl.Parent = innerRow
+
+			tweenObj(toast, 0.3, Enum.EasingStyle.Back, Enum.EasingDirection.Out,
+				{BackgroundTransparency = 0, Position = UDim2.new(0.5, 0, 0, topY)})
+
+			task.wait(2)
+
+			tweenObj(toast, 0.28, Enum.EasingStyle.Quint, Enum.EasingDirection.In,
+				{BackgroundTransparency = 1, Position = UDim2.new(0.5, 0, 0, topY - 8)})
+			tweenObj(lbl, 0.28, Enum.EasingStyle.Quint, Enum.EasingDirection.In, {TextTransparency = 1})
+			task.wait(0.3)
+			toast:Destroy()
+		end)
+	end
+
+	function windowObject:SetTitle(text)
+		topBarlbl.Text = tostring(text or "")
+	end
+
+	function windowObject:Lock(message)
+		lockLabel.Text = tostring(message or "Loading...")
+		lockOverlay.BackgroundTransparency = 1
+		lockOverlay.Visible = true
+		lockInputBlocker.Visible = true
+		tweenObj(lockOverlay, 0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out,
+			{BackgroundTransparency = 0.45})
+	end
+
+	function windowObject:Unlock()
+		tweenObj(lockOverlay, 0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out,
+			{BackgroundTransparency = 1})
+		lockInputBlocker.Visible = false
+		task.delay(0.28, function()
+			lockOverlay.Visible = false
+		end)
+	end
+
+	local flashActive = false
+	function windowObject:Flash(color)
+		if flashActive then return end
+		flashActive = true
+		local useColor = (type(color) == "userdata" and color) or accentColor
+		local origColor = windowStroke.Color
+		local origThick = windowStroke.Thickness
+		tweenObj(windowStroke, 0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out,
+			{Color = useColor, Thickness = 4})
+		task.delay(0.1, function()
+			tweenObj(windowStroke, 0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out,
+				{Color = useColor, Thickness = 6})
+			task.delay(0.15, function()
+				tweenObj(windowStroke, 0.4, Enum.EasingStyle.Quint, Enum.EasingDirection.Out,
+					{Color = origColor, Thickness = origThick})
+				task.delay(0.4, function()
+					flashActive = false
+				end)
+			end)
+		end)
+	end
+
+	function windowObject:SetReopenKey(key)
+		reopenKey = key
+	end
+
+	function windowObject:SetCloseAnim(anim)
+		closeAnim = anim
+	end
+
+	function windowObject:SetMinimizeAnim(anim)
+		minimizeAnim = anim
+	end
 
 	function windowObject:SetAvatarText(text)
 		avatarSubLabel.Text = tostring(text)
@@ -2230,6 +2364,7 @@ function Heavenly:Window(config)
 		minimizeIcon.ImageColor3 = newTheme.Text
 		closeIcon.ImageColor3 = newTheme.Text
 		tabHolder.ScrollBarImageColor3 = newTheme.Divider
+		windowStroke.Color = newTheme.Stroke
 	end
 
 	function windowObject:SetAccentColor(color)
@@ -2253,6 +2388,7 @@ function Heavenly:Window(config)
 		tabButton.BorderSizePixel = 0
 		tabButton.Size = UDim2.new(1, 0, 0, 30)
 		tabButton.Parent = tabHolder
+		tabButton.ClipsDescendants = true
 
 		local tabButtonIcon = Instance.new("ImageLabel")
 		tabButtonIcon.Name = "Ico"
@@ -2290,6 +2426,7 @@ function Heavenly:Window(config)
 		tabPage.CanvasSize = UDim2.new(0, 0, 0, 0)
 		tabPage.Size = UDim2.new(1, -150, 1, -50)
 		tabPage.Position = UDim2.new(0, 150, 0, 50)
+		tabPage.ZIndex = 3
 		tabPage.Visible = false
 		tabPage.Parent = mainWindow
 
@@ -2350,7 +2487,6 @@ function Heavenly:Window(config)
 		end
 
 		local tabObject = {}
-
 		tabObject._tabEntry = tabEntry
 
 		function tabObject:Section(text, parentOverride)
@@ -2386,15 +2522,15 @@ function Heavenly:Window(config)
 			end)
 
 			local sectionObject = {}
-			function sectionObject:Button(t, cb)        return tabObject:Button(t, cb, sectionHolder) end -- looks cleaner dont mind design and variable names figure it out yaself
+			function sectionObject:Button(t, cb)           return tabObject:Button(t, cb, sectionHolder) end
 			function sectionObject:Toggle(t, d, cb, fl)        return tabObject:Toggle(t, d, cb, fl, sectionHolder) end
-			function sectionObject:Label(t)                     return tabObject:Label(t, sectionHolder) end
-			function sectionObject:TextBox(p, cb)             return tabObject:TextBox(p, cb, sectionHolder) end
-			function sectionObject:Slider(t, mn, mx, df, cb, fl)  return tabObject:Slider(t, mn, mx, df, cb, fl, sectionHolder) end
-			function sectionObject:Paragraph(t, c)                return tabObject:Paragraph(t, c, sectionHolder) end
-			function sectionObject:Dropdown(c)             return tabObject:Dropdown(c, sectionHolder) end
-			function sectionObject:Bind(c)               return tabObject:Bind(c, sectionHolder) end
-			function sectionObject:Colorpicker(c)   return tabObject:Colorpicker(c, sectionHolder) end
+			function sectionObject:Label(t)           return tabObject:Label(t, sectionHolder) end
+			function sectionObject:TextBox(p, cb)              return tabObject:TextBox(p, cb, sectionHolder) end
+			function sectionObject:Slider(t, mn, mx, df, cb, fl) return tabObject:Slider(t, mn, mx, df, cb, fl, sectionHolder) end
+			function sectionObject:Paragraph(t, c)             return tabObject:Paragraph(t, c, sectionHolder) end
+			function sectionObject:Dropdown(c)            return tabObject:Dropdown(c, sectionHolder) end
+			function sectionObject:Bind(c)                  return tabObject:Bind(c, sectionHolder) end
+			function sectionObject:Colorpicker(c)          return tabObject:Colorpicker(c, sectionHolder) end
 			return sectionObject
 		end
 
@@ -2462,10 +2598,19 @@ function Heavenly:Window(config)
 			local resolvedFlag = type(text) == "table" and text.Flag or flagName
 			local resolvedColor = type(text) == "table" and (text.Color or Color3.fromRGB(9, 99, 195)) or Color3.fromRGB(9, 99, 195)
 			local resolvedSave = type(text) == "table" and (text.Save or false) or false
+			local resolvedConfirm = type(text) == "table" and (text.Confirm == true) or false
 
 			local toggleObj = {Value = resolvedDefault, Save = resolvedSave, Type = "Toggle"}
 
-			local frame = makeElementFrame(38, parentOverride)
+			local outerFrame = makeElementFrame(38, parentOverride)
+			outerFrame.ClipsDescendants = true
+
+			local frame = Instance.new("Frame")
+			frame.BackgroundTransparency = 1
+			frame.BorderSizePixel = 0
+			frame.Size = UDim2.new(1, 0, 0, 38)
+			frame.Position = UDim2.new(0, 0, 0, 0)
+			frame.Parent = outerFrame
 
 			local nameLabel = Instance.new("TextLabel")
 			nameLabel.Name = "Content"
@@ -2502,13 +2647,129 @@ function Heavenly:Window(config)
 			checkIcon.Size = UDim2.new(0, 20, 0, 20)
 			checkIcon.Parent = checkboxFrame
 
-			local clickButton = Instance.new("TextButton")
-			clickButton.Text = ""
-			clickButton.AutoButtonColor = false
-			clickButton.BackgroundTransparency = 1
-			clickButton.BorderSizePixel = 0
-			clickButton.Size = UDim2.new(1, 0, 1, 0)
-			clickButton.Parent = frame
+			local confirmRow = nil
+			local confirmPending = false
+
+			if resolvedConfirm then
+				confirmRow = Instance.new("Frame")
+				confirmRow.BackgroundTransparency = 1
+				confirmRow.BorderSizePixel = 0
+				confirmRow.Size = UDim2.new(1, 0, 0, 0)
+				confirmRow.ClipsDescendants = true
+				confirmRow.ZIndex = 5
+				confirmRow.Position = UDim2.new(0, 0, 0, 38)
+				confirmRow.Parent = outerFrame
+
+				local confirmDivider = Instance.new("Frame")
+				confirmDivider.BackgroundColor3 = theme.Stroke
+				confirmDivider.BorderSizePixel = 0
+				confirmDivider.Size = UDim2.new(1, -24, 0, 1)
+				confirmDivider.Position = UDim2.new(0, 12, 0, 0)
+				confirmDivider.ZIndex = 6
+				confirmDivider.Parent = confirmRow
+
+				local confirmLabel = Instance.new("TextLabel")
+				confirmLabel.Text = "Are you sure?"
+				confirmLabel.Font = Enum.Font.GothamSemibold
+				confirmLabel.TextSize = 12
+				confirmLabel.TextColor3 = theme.TextDark
+				confirmLabel.BackgroundTransparency = 1
+				confirmLabel.AnchorPoint = Vector2.new(0, 0.5)
+				confirmLabel.Size = UDim2.new(0.4, 0, 0, 28)
+				confirmLabel.Position = UDim2.new(0, -35, 0.5, 0)
+				confirmLabel.ZIndex = 6
+				confirmLabel.Parent = confirmRow
+
+				local confirmYes = Instance.new("TextButton")
+				confirmYes.Text = "Confirm"
+				confirmYes.Font = Enum.Font.GothamSemibold
+				confirmYes.TextSize = 11
+				confirmYes.TextColor3 = theme.Text
+				confirmYes.BackgroundColor3 = Color3.fromRGB(55, 55, 62)
+				confirmYes.BorderSizePixel = 0
+				confirmYes.AnchorPoint = Vector2.new(1, 0.5)
+				confirmYes.Size = UDim2.new(0, 58, 0, 22)
+				confirmYes.Position = UDim2.new(1, -68, 0.5, 0)
+				confirmYes.ZIndex = 6
+				confirmYes.AutoButtonColor = false
+				confirmYes.Parent = confirmRow
+				addCorner(confirmYes, 0, 4)
+				addStroke(confirmYes, theme.Stroke, 1)
+
+				local confirmNo = Instance.new("TextButton")
+				confirmNo.Text = "Cancel"
+				confirmNo.Font = Enum.Font.GothamSemibold
+				confirmNo.TextSize = 11
+				confirmNo.TextColor3 = theme.TextDark
+				confirmNo.BackgroundColor3 = Color3.fromRGB(40, 40, 46)
+				confirmNo.BorderSizePixel = 0
+				confirmNo.AnchorPoint = Vector2.new(1, 0.5)
+				confirmNo.Size = UDim2.new(0, 52, 0, 22)
+				confirmNo.Position = UDim2.new(1, -8, 0.5, 0)
+				confirmNo.ZIndex = 6
+				confirmNo.AutoButtonColor = false
+				confirmNo.Parent = confirmRow
+				addCorner(confirmNo, 0, 4)
+				addStroke(confirmNo, theme.Stroke, 1)
+
+				confirmYes.MouseEnter:Connect(function()
+					tweenObj(confirmYes, 0.12, nil, nil, {BackgroundColor3 = Color3.fromRGB(70, 70, 80)})
+				end)
+				confirmYes.MouseLeave:Connect(function()
+					tweenObj(confirmYes, 0.12, nil, nil, {BackgroundColor3 = Color3.fromRGB(55, 55, 62)})
+				end)
+				confirmNo.MouseEnter:Connect(function()
+					tweenObj(confirmNo, 0.12, nil, nil, {BackgroundColor3 = Color3.fromRGB(55, 55, 62)})
+				end)
+				confirmNo.MouseLeave:Connect(function()
+					tweenObj(confirmNo, 0.12, nil, nil, {BackgroundColor3 = Color3.fromRGB(40, 40, 46)})
+				end)
+
+				local function closeConfirm()
+					confirmPending = false
+					tweenObj(confirmRow, 0.2, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, {Size = UDim2.new(1, 0, 0, 0)})
+					tweenObj(outerFrame, 0.2, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, {Size = UDim2.new(1, 0, 0, 38)})
+				end
+
+				local function openConfirm()
+					confirmPending = true
+					tweenObj(confirmRow, 0.22, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, {Size = UDim2.new(1, 0, 0, 38)})
+					tweenObj(outerFrame, 0.22, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, {Size = UDim2.new(1, 0, 0, 76)})
+				end
+
+				confirmYes.MouseButton1Click:Connect(function()
+					closeConfirm()
+					toggleObj.Value = not toggleObj.Value
+					tweenObj(checkboxFrame, 0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out,
+						{BackgroundColor3 = toggleObj.Value and resolvedColor or Themes.Dark.Divider})
+					tweenObj(checkboxStroke, 0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out,
+						{Color = toggleObj.Value and resolvedColor or Themes.Dark.Stroke})
+					tweenObj(checkIcon, 0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, {
+						ImageTransparency = toggleObj.Value and 0 or 1,
+						Size = toggleObj.Value and UDim2.new(0, 20, 0, 20) or UDim2.new(0, 8, 0, 8),
+					})
+					pcall(resolvedCb, toggleObj.Value)
+					if doSaveConfig then saveFlags(configFolder, configFile) end
+				end)
+
+				confirmNo.MouseButton1Click:Connect(closeConfirm)
+
+				local clickButton2 = Instance.new("TextButton")
+				clickButton2.Text = ""
+				clickButton2.AutoButtonColor = false
+				clickButton2.BackgroundTransparency = 1
+				clickButton2.BorderSizePixel = 0
+				clickButton2.Size = UDim2.new(1, 0, 0, 38)
+				clickButton2.Position = UDim2.new(0, 0, 0, 0)
+				clickButton2.ZIndex = 4
+				clickButton2.Parent = outerFrame
+
+				applyHover(clickButton2, outerFrame)
+				clickButton2.MouseButton1Up:Connect(function()
+					if confirmPending then return end
+					openConfirm()
+				end)
+			end
 
 			function toggleObj:Set(value)
 				toggleObj.Value = value
@@ -2524,11 +2785,22 @@ function Heavenly:Window(config)
 			end
 
 			toggleObj:Set(resolvedDefault)
-			applyHover(clickButton, frame)
-			clickButton.MouseButton1Up:Connect(function()
-				toggleObj:Set(not toggleObj.Value)
-				if doSaveConfig then saveFlags(configFolder, configFile) end
-			end)
+
+			if not resolvedConfirm then
+				local clickButton = Instance.new("TextButton")
+				clickButton.Text = ""
+				clickButton.AutoButtonColor = false
+				clickButton.BackgroundTransparency = 1
+				clickButton.BorderSizePixel = 0
+				clickButton.Size = UDim2.new(1, 0, 1, 0)
+				clickButton.Parent = outerFrame
+
+				applyHover(clickButton, outerFrame)
+				clickButton.MouseButton1Up:Connect(function()
+					toggleObj:Set(not toggleObj.Value)
+					if doSaveConfig then saveFlags(configFolder, configFile) end
+				end)
+			end
 
 			if resolvedFlag then Heavenly.Flags[resolvedFlag] = toggleObj end
 			table.insert(Heavenly._ElementRegistry, {name = resolvedText, obj = toggleObj, tab = tabEntry})
@@ -2755,7 +3027,7 @@ function Heavenly:Window(config)
 			bodyLabel.Position = UDim2.new(0, 12, 0, 38)
 			bodyLabel.Parent = frame
 
-			local function resizeFrame() -- Adjust frame height based on content
+			local function resizeFrame()
 				task.defer(function()
 					frame.Size = UDim2.new(1, 0, 0, bodyLabel.AbsoluteSize.Y + 50)
 				end)
@@ -3374,8 +3646,26 @@ function Heavenly:Window(config)
 			return colorpicker
 		end
 
+		-- Aliases for alternate naming conventions
+		tabObject.AddSection    = tabObject.Section
+		tabObject.AddButton     = tabObject.Button
+		tabObject.AddToggle     = tabObject.Toggle
+		tabObject.AddColorpicker = tabObject.Colorpicker
+		tabObject.AddSlider     = tabObject.Slider
+		tabObject.AddLabel      = tabObject.Label
+		tabObject.AddParagraph  = tabObject.Paragraph
+		tabObject.AddTextbox    = tabObject.TextBox
+		tabObject.AddBind       = tabObject.Bind
+		tabObject.AddDropdown   = tabObject.Dropdown
+
 		return tabObject
 	end
+
+	windowObject.MakeTab = windowObject.Tab
+
+	task.defer(function()
+		Heavenly:Init()
+	end)
 
 	if doStartup and Animations[startupAnim] then
 		task.spawn(function()
@@ -3389,6 +3679,8 @@ function Heavenly:Window(config)
 end
 
 function Heavenly:Init()
+	if Heavenly._initDone then return end
+	Heavenly._initDone = true
 	if Heavenly.ShowKeybindList then
 		Heavenly:KeybindList()
 	end
@@ -3413,7 +3705,7 @@ function Heavenly:Init()
 				end
 				Heavenly:Notify({
 					Name = "Configuration",
-					Content = "Auto-loaded configuration for game " .. Heavenly._CfgFile .. ".", -- may be bugged
+					Content = "Auto-loaded configuration for game " .. Heavenly._CfgFile .. ".",
 					Time = 5,
 					DurationColor = Color3.fromRGB(0, 200, 120),
 				})
@@ -3422,32 +3714,8 @@ function Heavenly:Init()
 	end)
 end
 
-local originalWindow = Heavenly.Window
-function Heavenly:Window(config)
-	local win = originalWindow(self, config)
-
-	local originalTab = win.Tab
-	function win:Tab(tabConfig)
-		local tab = originalTab(self, tabConfig)
-		tab.AddSection = tab.Section
-		tab.AddButton = tab.Button
-		tab.AddToggle = tab.Toggle
-		tab.AddColorpicker = tab.Colorpicker
-		tab.AddSlider = tab.Slider
-		tab.AddLabel = tab.Label
-		tab.AddParagraph = tab.Paragraph
-		tab.AddTextbox = tab.TextBox
-		tab.AddBind = tab.Bind
-		tab.AddDropdown = tab.Dropdown
-		return tab
-	end
-
-	win.MakeTab = win.Tab
-	return win
-end
-
 Heavenly.MakeWindow = Heavenly.Window
-Heavenly.MakeNotification = Heavenly.Notify -- orion support (orion variables compatibility with fucki g us) -- not a good way to use it though
+Heavenly.MakeNotification = Heavenly.Notify
 
 function Heavenly:Destroy()
 	local targets = {game:GetService("CoreGui"), LocalPlayer.PlayerGui}
@@ -3456,7 +3724,7 @@ function Heavenly:Destroy()
 			local guiInstance = target:FindFirstChild(guiName)
 			if guiInstance then guiInstance:Destroy() end
 		end
-	end 
+	end
 	pcall(function()
 		local protectedGui = gethui()
 		for _, guiName in ipairs({"HeavenlyUI", "HeavenlyNotifications", "HeavenlyNotificationsClassic", "HeavenlyKeybindList", "HeavenlyTopbar", "HeavenlyRadial"}) do
@@ -3474,6 +3742,7 @@ function Heavenly:Destroy()
 	Heavenly._MainWindowRef = nil
 	Heavenly._RestoreRef = nil
 	Heavenly._MinimizedRef = nil
+	Heavenly._initDone = false
 end
 
 return Heavenly
