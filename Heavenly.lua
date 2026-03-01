@@ -1758,7 +1758,7 @@ function Heavenly:Window(config)
 	local windowName = config.Name or "HeavenlyUI"
 	local theme = Themes[config.Theme] or Themes.Dark
 	local doStartup = config.Startup or false
-	local startupAnim = config.StartupAnim or "Fade"
+	local startupAnim = config.StartupAnim or "Blob"
 	local startupText = config.StartupText or ""
 	local startupIcon = config.StartupIcon or ""
 	local configFolder = config.ConfigFolder or windowName
