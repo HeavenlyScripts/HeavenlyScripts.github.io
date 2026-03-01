@@ -483,16 +483,50 @@ nav {
   background: var(--bg-secondary);
 }
 
-/* ─── DOCS CONTENT ────────────────────────────────────────────── */
+.sidebar-contribute {
+  margin: 2rem 1rem 0.5rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-card);
+}
+
+.sidebar-contribute-text {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 0.6rem;
+}
+
+.sidebar-contribute-btn {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 0.35rem 0.75rem;
+  transition: all var(--transition);
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.sidebar-contribute-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--text-muted);
+  background: var(--bg-secondary);
+}
+
 
 .docs-content {
   flex: 1;
   max-width: 780px;
   padding: 3rem 3rem 6rem;
-  /* Docs content is readable — allow selection */
   user-select: text;
   -webkit-user-select: text;
-  min-width: 0; /* prevent flex overflow */
+  min-width: 0;
 }
 
 .doc-section {
@@ -1355,9 +1389,9 @@ code {
 
 html {
   scrollbar-width: none;       
-  -ms-overflow-style: none;    
+  -ms-overflow-style: none;     
 }
 
 html::-webkit-scrollbar {
-  display: none;              
+  display: none;                
 }
