@@ -122,7 +122,7 @@ function showDocsModal() {
       <div class="lib-modal-options">
         <button class="lib-option active-option" data-lib="lib" onclick="selectLib('lib')">
           <span class="lib-option-name">Heavenly Lib</span>
-          <span class="lib-option-sub">An Heavenily Modified fork of the UI-Library "Orion", adapted for Performace, User Friendliness. </span>
+          <span class="lib-option-sub">An Heavily Modified fork of the UI-Library "Orion", adapted for Performace, User Friendliness. </span>
           <span class="lib-option-badge">Available</span>
         </button>
         <button class="lib-option" data-lib="interface" onclick="selectLib('interface')">
