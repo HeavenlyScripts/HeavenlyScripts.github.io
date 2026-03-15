@@ -1,46 +1,39 @@
-MIT License
 
 Copyright (c) 2026, HeavenlyScripts
 
+This library is inspired by OrionLib's UI design.
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+of this software and associated documentation files (the "Software"), to use,
+modify, and redistribute the Software, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. Attribution Required  
+   Any public use, redistribution, or derivative work of the Software must 
+   provide clear credit to the original author. The credit must state:
+   "HeavenlyScripts UI Library, 2026, inspired by OrionLib."
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. Non-Commercial Use Only  
+   The Software and any derivative works may not be sold or monetized in 
+   any form. Redistribution must be free of charge.
 
-Trademark and Branding Notice
+3. Branding Protection  
+   The name “Heavenly”, including logos, design elements, documentation styling,
+   and associated branding assets (collectively, the “Heavenly Brand”) are 
+   the exclusive property of the author.  
+   - Derivative works may not use the name “Heavenly”.  
+   - Derivative works must use a clearly distinct name and branding.  
+   - The Heavenly Brand may not be used to misrepresent a derivative work as official.
 
-The name “Heavenly”, including but not limited to its logo, design elements,
-documentation styling, and associated branding assets (collectively, the
-“Heavenly Brand”), is the intellectual property of the project author.
+4. Derivative Work Disclosure  
+   If you modify or extend the Software, you must clearly indicate that your
+   version is a derivative and not the official HeavenlyScripts UI Library.
 
-This license grants rights to the source code only. It does not grant any
-rights, express or implied, to use the Heavenly name, logo, or branding for
-modified or derivative works.
+5. No Warranty
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. THE AUTHOR SHALL NOT
+   BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE USE
+   OR DISTRIBUTION OF THE SOFTWARE.
 
-You are permitted to fork, modify, and redistribute the Software under the
-terms of the MIT License. However:
-
-Modified versions may not be distributed under the name “Heavenly”.
-
-The Heavenly name and branding may not be used to imply that a modified
-version is the official project.
-
-Forks or derivative works must use a clearly distinct name and branding.
-
-Use of the Heavenly name or branding for modified versions requires prior
-written permission from the project author.
-
-All rights in the Heavenly Brand are reserved.
+By using, modifying, or redistributing the Software, you agree to comply with
+all terms above. Failure to do so may result in legal action.
