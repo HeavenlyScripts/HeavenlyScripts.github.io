@@ -6672,7 +6672,11 @@ function Heavenly:Window(config)
 	windowObject.MakeTab = windowObject.Tab
 
 	task.defer(function()
-    	Heavenly:Init(theme)
+    	if Heavenly._initDone then return end
+    	Heavenly._initDone = true
+    	if Heavenly.ShowKeybindList then Heavenly:KeybindList(theme) end
+    	if Heavenly.ShowTopbar then Heavenly:Topbar(theme) end
+    	if Heavenly.ShowRadial then Heavenly:Radial(theme) end
 	end)
 
 	if doStartup and Animations[startupAnim] then
