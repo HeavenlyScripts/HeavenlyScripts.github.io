@@ -1,4 +1,4 @@
-Copyright (c) 2026, HeavenlyScripts
+Copyright (c) 2026, (Get)Isotope
 
 This library is inspired by OrionLib's UI design.
 
@@ -9,7 +9,7 @@ modify, and redistribute the Software, subject to the following conditions:
 1. Attribution Required  
    Any public use, redistribution, or derivative work of the Software must 
    provide clear credit to the original author. The credit must state:
-   "HeavenlyScripts UI Library, 2026, inspired by OrionLib."
+   "Isotope UI Library, 2026, inspired by OrionLib."
 
 2. Commercial Use Allowed (Library Restriction)  
    The Software may be used in commercial, monetized, or paid projects, 
@@ -23,16 +23,16 @@ modify, and redistribute the Software, subject to the following conditions:
    as part of a larger paid project, provided it is not the primary value being sold.
 
 4. Branding Protection  
-   The name “Heavenly”, including logos, design elements, documentation styling,
-   and associated branding assets (collectively, the “Heavenly Brand”), are 
+   The name “Isotope”, including logos, design elements, documentation styling,
+   and associated branding assets (collectively, the “Isotope Brand”), are 
    the exclusive property of the author.  
-   - Derivative works may not use the name “Heavenly”.  
+   - Derivative works may not use the name “Isotope”.  
    - Derivative works must use clearly distinct naming and branding.  
-   - The Heavenly Brand may not be used to imply endorsement or represent a derivative work as official.
+   - The Isotope Brand may not be used to imply endorsement or represent a derivative work as official.
 
 5. Derivative Work Disclosure  
    If you modify or extend the Software, you must clearly indicate that your
-   version is a derivative and not the official HeavenlyScripts UI Library.
+   version is a derivative and not the official Isotope UI Library.
 
 6. No Warranty  
    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
