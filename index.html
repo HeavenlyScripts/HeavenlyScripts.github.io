@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HeavenlyScripts</title>
-  <meta name="description" content="HeavenlyScripts - Roblox Lua UI Library, Toolkit, and Scripts" />
+  <title>Isotope</title>
+  <meta name="description" content="Isotope - Roblox Lua UI Library, Toolkit, and Scripts" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>" />
 </head>
 <body>
 
   <nav>
-    <div class="nav-logo" data-goto="home">Heavenly<span>Scripts</span></div>
+    <div class="nav-logo" data-goto="home">Isotope<span>Scripts</span></div>
     <div class="nav-links">
       <span class="nav-link" data-page="home">Home</span>
       <span class="nav-link" data-page="docs">Docs</span>
@@ -40,7 +40,7 @@
       <section class="home-hero">
         <div class="hero-grid-bg" aria-hidden="true"></div>
         <span class="hero-eyebrow">Scripts Made Simple</span>
-        <h1 class="hero-title">Heavenly<br /><span class="dim">Scripts</span></h1>
+        <h1 class="hero-title">Isotope<br /><span class="dim">Scripts</span></h1>
         <p class="hero-subtitle">A Roblox Lua UI library and collection of scripts designed to make your coding or exploiting experience smoother.</p>
         <div class="hero-buttons">
           <button class="btn-primary" data-goto="docs">Read the Docs</button>
@@ -51,7 +51,7 @@
       <div class="home-features">
         <div class="feature-card">
           <span class="feature-icon"><img src="Icons/icon.ico" alt="Feature Icon" onerror="this.parentElement.textContent='✦'"></span>
-          <div class="feature-title">Heavenly Library</div>
+          <div class="feature-title">Isotope Library</div>
           <p class="feature-desc">A lightweight, composable Roblox Lua UI library with zero dependencies. Drop it in and build fast.</p>
         </div>
         <div class="feature-card">
@@ -72,11 +72,11 @@
       </div>
 
       <footer class="footer">
-        <span class="footer-brand">HeavenlyScripts</span>
+        <span class="footer-brand">Isotope</span>
         <div class="footer-links">
           <span class="footer-link" data-goto="docs">Docs</span>
           <span class="footer-link" data-goto="portfolio">Projects</span>
-          <a class="footer-link" href="https://github.com/heavenlyscripts" target="_blank" rel="noopener">GitHub</a>
+          <a class="footer-link" href="https://github.com/Isotope" target="_blank" rel="noopener">GitHub</a>
         </div>
       </footer>
     </main>
@@ -142,8 +142,8 @@
 
           <div class="doc-section" id="getting-started">
             <span class="doc-section-badge">Introduction</span>
-            <h2>Welcome to the Heavenly Docs.</h2>
-            <p>This is the official documentation for the Heavenly UI Library, a Roblox Lua UI framework. It gives you a full set of UI elements for building script interfaces fast, without boilerplate.</p>
+            <h2>Welcome to the Isotope Docs.</h2>
+            <p>This is the official documentation for the Isotope UI Library, a Roblox Lua UI framework. It gives you a full set of UI elements for building script interfaces fast, without boilerplate.</p>
             <p>The library handles everything: window creation, tabs, elements, notifications, keybind tracking, a radial menu, a topbar, config saving, startup animations, a watermark, and more. Every element returns an object you can call <code>:Set()</code> on to update it at runtime.</p>
             <div class="callout">
               <p><strong>Note:</strong> The library uses <code>writefile</code>, <code>readfile</code>, <code>isfile</code>, and <code>makefolder</code> for config saving. These are optional, all other features work without them.</p>
@@ -157,32 +157,32 @@
             <p>Load the library with <code>loadstring</code> and <code>game:HttpGet</code> in your executor.</p>
             <div class="code-block">
               <div class="code-block-header"><span class="code-block-lang">lua</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-              <pre>local Heavenly = loadstring(game:HttpGet("https://raw.githubusercontent.com/HeavenlyScripts/HeavenlyScripts.github.io/refs/heads/main/Heavenly.lua"))()</pre>
+              <pre>local Isotope = loadstring(game:HttpGet("https://raw.githubusercontent.com/Isotope/Isotope.github.io/refs/heads/main/Isotope.lua"))()</pre>
             </div>
             <div class="doc-divider"></div>
             <h2>Legacy</h2>
             <p>If you encounter issues with the current release, load the previous stable version instead.</p>
             <div class="code-block">
               <div class="code-block-header"><span class="code-block-lang">lua</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-              <pre>local Heavenly = loadstring(game:HttpGet("https://raw.githubusercontent.com/HeavenlyScripts/HeavenlyScripts.github.io/refs/heads/main/HeavenlyLegacy.lua"))()</pre>
+              <pre>local Isotope = loadstring(game:HttpGet("https://raw.githubusercontent.com/Isotope/Isotope.github.io/refs/heads/main/IsotopeLegacy.lua"))()</pre>
             </div>
             <div class="doc-divider"></div>
             <p>Script order matters. Always follow this structure.</p>
             <div class="code-block">
               <div class="code-block-header"><span class="code-block-lang">lua</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-              <pre>local Heavenly = loadstring(game:HttpGet("https://raw.githubusercontent.com/HeavenlyScripts/HeavenlyScripts.github.io/refs/heads/main/Heavenly.lua"))()
+              <pre>local Isotope = loadstring(game:HttpGet("https://raw.githubusercontent.com/Isotope/Isotope.github.io/refs/heads/main/Isotope.lua"))()
 
-Heavenly.ShowTopbar = true
-Heavenly.ShowRadial = true
-Heavenly.RadialHotkey = Enum.KeyCode.Z
-Heavenly.RadialMode = "hold"
-Heavenly.ShowKeybindList = true
+Isotope.ShowTopbar = true
+Isotope.ShowRadial = true
+Isotope.RadialHotkey = Enum.KeyCode.Z
+Isotope.RadialMode = "hold"
+Isotope.ShowKeybindList = true
 
-local Window = Heavenly:Window({
+local Window = Isotope:Window({
     Name = "My Script"
 })
 
-local wm = Heavenly:Watermark("My Script")
+local wm = Isotope:Watermark("My Script")
 wm:Field("Map", function() return game:GetService("Players").LocalPlayer:GetAttribute("Map") or "Lobby" end)
 
 local Tab = Window:Tab({
@@ -196,10 +196,10 @@ Tab:Toggle({
     Callback = function(state) print(state) end
 })
 
-Heavenly:Init()</pre>
+Isotope:Init()</pre>
             </div>
             <div class="callout">
-              <p><strong>Important:</strong> <code>Heavenly.ShowTopbar</code>, <code>Heavenly.ShowRadial</code>, and other feature flags must be set <em>before</em> <code>Heavenly:Window()</code>. The library auto-calls <code>Heavenly:Init()</code> via <code>task.defer</code>, but calling it explicitly at the end is fine.</p>
+              <p><strong>Important:</strong> <code>Isotope.ShowTopbar</code>, <code>Isotope.ShowRadial</code>, and other feature flags must be set <em>before</em> <code>Isotope:Window()</code>. The library auto-calls <code>Isotope:Init()</code> via <code>task.defer</code>, but calling it explicitly at the end is fine.</p>
             </div>
             <div class="doc-divider"></div>
           </div>
@@ -212,16 +212,16 @@ Heavenly:Init()</pre>
             <p>Available names: <code>Dark</code>, <code>Light</code>, <code>Midnight</code>, <code>Crimson</code>, <code>Forest</code>.</p>
             <div class="code-block">
               <div class="code-block-header"><span class="code-block-lang">lua</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-              <pre>local Window = Heavenly:Window({
+              <pre>local Window = Isotope:Window({
     Name = "My Script",
     Theme = "Midnight"
   })</pre>
             </div>
             <h3>Custom Themes</h3>
-            <p>Register with <code>Heavenly.Themes:Add()</code> before <code>Heavenly:Window()</code>. Any keys you omit fall back to Dark theme defaults.</p>
+            <p>Register with <code>Isotope.Themes:Add()</code> before <code>Isotope:Window()</code>. Any keys you omit fall back to Dark theme defaults.</p>
             <div class="code-block">
               <div class="code-block-header"><span class="code-block-lang">lua</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-              <pre>Heavenly.Themes:Add("Neon", {
+              <pre>Isotope.Themes:Add("Neon", {
     Main = Color3.fromRGB(5, 5, 10),
     Second = Color3.fromRGB(10, 10, 20),
     Stroke = Color3.fromRGB(0, 255, 180),
@@ -231,7 +231,7 @@ Heavenly:Init()</pre>
     Accent = Color3.fromRGB(0, 255, 180),
 })
 
-local Window = Heavenly:Window({
+local Window = Isotope:Window({
    Name = "My Script",
    Theme = "Neon"
 })</pre>
@@ -242,7 +242,7 @@ local Window = Heavenly:Window({
               <pre>Window:SetTheme("Light")</pre>
             </div>
             <div class="callout">
-              <p><strong>Note:</strong> <code>Heavenly:SetTheme()</code> does not exist. Always call it on the window object: <code>Window:SetTheme(name)</code>.</p>
+              <p><strong>Note:</strong> <code>Isotope:SetTheme()</code> does not exist. Always call it on the window object: <code>Window:SetTheme(name)</code>.</p>
             </div>
             <div class="doc-divider"></div>
           </div>
@@ -250,10 +250,10 @@ local Window = Heavenly:Window({
           <div class="doc-section" id="window">
             <span class="doc-section-badge">Introduction</span>
             <h2>Window</h2>
-            <p>The window is the root container for your entire UI. Create it with <code>Heavenly:Window()</code> after setting any feature flags.</p>
+            <p>The window is the root container for your entire UI. Create it with <code>Isotope:Window()</code> after setting any feature flags.</p>
             <div class="code-block">
               <div class="code-block-header"><span class="code-block-lang">lua</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-              <pre>local Window = Heavenly:Window({
+              <pre>local Window = Isotope:Window({
     Name = "My Script",
     Theme = "Dark",
     Startup = true,
@@ -282,7 +282,7 @@ local Window = Heavenly:Window({
             <table class="prop-table">
               <thead><tr><th>Option</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
               <tbody>
-                <tr><td>Name</td><td>string</td><td>"HeavenlyUI"</td><td>Title shown in the top bar</td></tr>
+                <tr><td>Name</td><td>string</td><td>"IsotopeUI"</td><td>Title shown in the top bar</td></tr>
                 <tr><td>Theme</td><td>string</td><td>"Dark"</td><td>Theme name</td></tr>
                 <tr><td>SaveConfig</td><td>boolean</td><td>false</td><td>Enable auto-save and load of flagged values</td></tr>
                 <tr><td>ConfigFolder</td><td>string</td><td>Window Name</td><td>Folder name for config files</td></tr>
@@ -387,7 +387,7 @@ print(toggle.Value)</pre>
               <tbody>
                 <tr><td>Name</td><td>string</td><td>"Toggle"</td><td>Label shown on the row</td></tr>
                 <tr><td>Default</td><td>boolean</td><td>false</td><td>Initial state</td></tr>
-                <tr><td>Flag</td><td>string</td><td>nil</td><td>Key in Heavenly.Flags</td></tr>
+                <tr><td>Flag</td><td>string</td><td>nil</td><td>Key in Isotope.Flags</td></tr>
                 <tr><td>Save</td><td>boolean</td><td>false</td><td>Include in config save</td></tr>
                 <tr><td>Color</td><td>Color3</td><td>theme Accent</td><td>Checkbox accent color when enabled</td></tr>
                 <tr><td>Confirm</td><td>boolean</td><td>false</td><td>Show inline confirmation before firing. <a class="inline-link" data-section="confirm-toggle">→ docs</a></td></tr>
@@ -434,7 +434,7 @@ print(slider.Value)</pre>
                 <tr><td>Default</td><td>number</td><td>50</td><td>Starting value</td></tr>
                 <tr><td>Increment</td><td>number</td><td>1</td><td>Snapping increment</td></tr>
                 <tr><td>ValueName</td><td>string</td><td>""</td><td>Suffix appended to the displayed number</td></tr>
-                <tr><td>Flag</td><td>string</td><td>nil</td><td>Key in Heavenly.Flags</td></tr>
+                <tr><td>Flag</td><td>string</td><td>nil</td><td>Key in Isotope.Flags</td></tr>
                 <tr><td>Save</td><td>boolean</td><td>false</td><td>Include in config save</td></tr>
                 <tr><td>Color</td><td>Color3</td><td>theme Accent</td><td>Fill and border color of the track</td></tr>
                 <tr><td>Callback</td><td>function</td><td>nil</td><td>Called with the new number on drag</td></tr>
@@ -470,7 +470,7 @@ print(dropdown.Value)</pre>
                 <tr><td>Name</td><td>string</td><td>"Dropdown"</td><td>Label shown in the header</td></tr>
                 <tr><td>Options</td><td>table</td><td>{}</td><td>Array of string options</td></tr>
                 <tr><td>Default</td><td>string</td><td>""</td><td>Initially selected option</td></tr>
-                <tr><td>Flag</td><td>string</td><td>nil</td><td>Key in Heavenly.Flags</td></tr>
+                <tr><td>Flag</td><td>string</td><td>nil</td><td>Key in Isotope.Flags</td></tr>
                 <tr><td>Save</td><td>boolean</td><td>false</td><td>Include in config save</td></tr>
                 <tr><td>Callback</td><td>function</td><td>nil</td><td>Called with selected string on change</td></tr>
               </tbody>
@@ -504,7 +504,7 @@ print(multi.Value)</pre>
                 <tr><td>Name</td><td>string</td><td>"Multi Dropdown"</td><td>Label shown in the header</td></tr>
                 <tr><td>Options</td><td>table</td><td>{}</td><td>Array of string options</td></tr>
                 <tr><td>Default</td><td>table</td><td>{}</td><td>Array of initially selected strings</td></tr>
-                <tr><td>Flag</td><td>string</td><td>nil</td><td>Key in Heavenly.Flags</td></tr>
+                <tr><td>Flag</td><td>string</td><td>nil</td><td>Key in Isotope.Flags</td></tr>
                 <tr><td>Save</td><td>boolean</td><td>false</td><td>Include in config save</td></tr>
                 <tr><td>Callback</td><td>function</td><td>nil</td><td>Called with the full selected values table on any change</td></tr>
               </tbody>
@@ -566,7 +566,7 @@ print(bind.Value)</pre>
                 <tr><td>Default</td><td>KeyCode</td><td>KeyCode.Unknown</td><td>Default key to bind</td></tr>
                 <tr><td>Hold</td><td>boolean</td><td>false</td><td>Fire on hold and release instead of single press</td></tr>
                 <tr><td>Modifier</td><td>KeyCode / table</td><td>nil</td><td>Required modifier key(s) held alongside the bind</td></tr>
-                <tr><td>Flag</td><td>string</td><td>nil</td><td>Key in Heavenly.Flags</td></tr>
+                <tr><td>Flag</td><td>string</td><td>nil</td><td>Key in Isotope.Flags</td></tr>
                 <tr><td>Save</td><td>boolean</td><td>false</td><td>Include in config save</td></tr>
                 <tr><td>Callback</td><td>function</td><td>nil</td><td>Fires when the bind is triggered</td></tr>
               </tbody>
@@ -596,7 +596,7 @@ print(cp.Value)</pre>
               <tbody>
                 <tr><td>Name</td><td>string</td><td>"Colorpicker"</td><td>Label shown in the header</td></tr>
                 <tr><td>Default</td><td>Color3</td><td>RGB(255,255,255)</td><td>Initial color</td></tr>
-                <tr><td>Flag</td><td>string</td><td>nil</td><td>Key in Heavenly.Flags</td></tr>
+                <tr><td>Flag</td><td>string</td><td>nil</td><td>Key in Isotope.Flags</td></tr>
                 <tr><td>Save</td><td>boolean</td><td>false</td><td>Include in config save</td></tr>
                 <tr><td>Callback</td><td>function</td><td>nil</td><td>Called with Color3 on change</td></tr>
               </tbody>
@@ -631,7 +631,7 @@ print(stepper.Value)</pre>
                 <tr><td>Name</td><td>string</td><td>"Stepper"</td><td>Label on the left</td></tr>
                 <tr><td>Options</td><td>table</td><td>{}</td><td>Ordered array of string options</td></tr>
                 <tr><td>Default</td><td>string</td><td>Options[1]</td><td>Initially selected option value string</td></tr>
-                <tr><td>Flag</td><td>string</td><td>nil</td><td>Key in Heavenly.Flags</td></tr>
+                <tr><td>Flag</td><td>string</td><td>nil</td><td>Key in Isotope.Flags</td></tr>
                 <tr><td>Save</td><td>boolean</td><td>false</td><td>Include in config save</td></tr>
                 <tr><td>Callback</td><td>function</td><td>nil</td><td>Called with the selected value string on change</td></tr>
               </tbody>
@@ -785,7 +785,7 @@ grid:Button("Rejoin",    function() print("Rejoin") end)</pre>
             <p>Sends a stacked notification from the bottom-right. Right-click to dismiss early.</p>
             <div class="code-block">
               <div class="code-block-header"><span class="code-block-lang">lua</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-              <pre>Heavenly:Notify({
+              <pre>Isotope:Notify({
     Name = "Config Loaded",
     Content = "Your saved config has been applied.",
     Time = 5,
@@ -795,7 +795,7 @@ grid:Button("Rejoin",    function() print("Rejoin") end)</pre>
     OnClick = function() print("clicked") end,
 })
 
-Heavenly:Notify("Simple message", 3)</pre>
+Isotope:Notify("Simple message", 3)</pre>
             </div>
             <div class="callout">
               <p><strong>Common mistake:</strong> The duration key is <code>Time</code>, not <code>Duration</code>.</p>
@@ -821,7 +821,7 @@ Heavenly:Notify("Simple message", 3)</pre>
             <p>An advanced notification with hover-to-pause timer, right-click dismiss, and an optional <code>Additional</code> field that opens a fullscreen blurred modal on click.</p>
             <div class="code-block">
               <div class="code-block-header"><span class="code-block-lang">lua</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-              <pre>Heavenly:CNotify({
+              <pre>Isotope:CNotify({
     Name = "Update Available",
     Content = "Version 2.0 is out. Click for details.",
     Additional = "Full changelog text here. Opens as a fullscreen modal when clicked.",
@@ -854,7 +854,7 @@ Heavenly:Notify("Simple message", 3)</pre>
             <p>A fullscreen blurred overlay that appears immediately without any click required. Clicking anywhere dismisses it.</p>
             <div class="code-block">
               <div class="code-block-header"><span class="code-block-lang">lua</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-              <pre>Heavenly:Modal({
+              <pre>Isotope:Modal({
     Name = "Warning",
     Content = "Your saved config is from a different version.",
     Additional = "Delete the config file and restart to reset your settings.",
@@ -900,7 +900,7 @@ Window:Toast("Teleported!", "rbxassetid://137352523558390")</pre>
             <p>A small floating bar in the top-left showing the script name, current time, live FPS, and any custom fields you add. Fully draggable and theme-aware.</p>
             <div class="code-block">
               <div class="code-block-header"><span class="code-block-lang">lua</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-              <pre>local wm = Heavenly:Watermark("My Script")
+              <pre>local wm = Isotope:Watermark("My Script")
 
 wm:Field("Map", function()
     return game:GetService("Players").LocalPlayer:GetAttribute("Map") or "Lobby"
@@ -918,7 +918,7 @@ wm:Show()
 wm:Destroy()</pre>
             </div>
             <div class="callout">
-              <p><strong>Note:</strong> Call <code>Heavenly:Watermark()</code> after <code>Heavenly:Window()</code> so the active theme is already set. The watermark always picks up <code>Heavenly._activeTheme</code>.</p>
+              <p><strong>Note:</strong> Call <code>Isotope:Watermark()</code> after <code>Isotope:Window()</code> so the active theme is already set. The watermark always picks up <code>Isotope._activeTheme</code>.</p>
             </div>
             <h3>Built-in Fields</h3>
             <p>The watermark always shows three built-in fields separated by <code>|</code> dividers: the script title (accent colored), the current local time (<code>HH:MM:SS</code>), and live FPS. Custom fields you add appear after these.</p>
@@ -943,14 +943,14 @@ wm:Destroy()</pre>
             <h2>Topbar</h2>
             <p>An optional floating panel at the top-center of the screen showing icon buttons for every tab, a search bar, and optional owner buttons. Fully draggable and theme-aware.</p>
             <div class="callout">
-              <p><strong>Must be set before <code>Heavenly:Window()</code>.</strong></p>
+              <p><strong>Must be set before <code>Isotope:Window()</code>.</strong></p>
             </div>
             <div class="code-block">
               <div class="code-block-header"><span class="code-block-lang">lua</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-              <pre>Heavenly.ShowTopbar = true
+              <pre>Isotope.ShowTopbar = true
 
-local Window = Heavenly:Window({ ... })
-Heavenly:Init()</pre>
+local Window = Isotope:Window({ ... })
+Isotope:Init()</pre>
             </div>
             <p>When more than 6 tabs are created the topbar adds a <code>...</code> expand button to reveal additional rows. The built-in search panel indexes all flags, elements, and binds.</p>
             <div class="doc-divider"></div>
@@ -961,19 +961,19 @@ Heavenly:Init()</pre>
             <h2>Radial Menu</h2>
             <p>A circular menu mapping each tab to a card arranged around a center point. Supports hold and toggle modes, plus five open/close animations.</p>
             <div class="callout">
-              <p><strong>Must be set before <code>Heavenly:Window()</code>.</strong></p>
+              <p><strong>Must be set before <code>Isotope:Window()</code>.</strong></p>
             </div>
             <div class="code-block">
               <div class="code-block-header"><span class="code-block-lang">lua</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-              <pre>Heavenly.ShowRadial   = true
-Heavenly.RadialHotkey = Enum.KeyCode.Q
-Heavenly.RadialMode = "hold"
-Heavenly.RadialAnim = "Bloom"
+              <pre>Isotope.ShowRadial   = true
+Isotope.RadialHotkey = Enum.KeyCode.Q
+Isotope.RadialMode = "hold"
+Isotope.RadialAnim = "Bloom"
 
-local Window = Heavenly:Window({ ... })
-Heavenly:Init()
+local Window = Isotope:Window({ ... })
+Isotope:Init()
 
-Heavenly.RadialAnim = "Spiral"</pre>
+Isotope.RadialAnim = "Spiral"</pre>
             </div>
             <table class="prop-table">
               <thead><tr><th>Property</th><th>Type</th><th>Description</th></tr></thead>
@@ -993,10 +993,10 @@ Heavenly.RadialAnim = "Spiral"</pre>
             <p>A persistent overlay in the bottom-left showing all active binds. Updates automatically when a bind changes.</p>
             <div class="code-block">
               <div class="code-block-header"><span class="code-block-lang">lua</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-              <pre>Heavenly.ShowKeybindList = true
+              <pre>Isotope.ShowKeybindList = true
 
-local Window = Heavenly:Window({ ... })
-Heavenly:Init()</pre>
+local Window = Isotope:Window({ ... })
+Isotope:Init()</pre>
             </div>
             <div class="doc-divider"></div>
           </div>
@@ -1004,10 +1004,10 @@ Heavenly:Init()</pre>
           <div class="doc-section" id="flags">
             <span class="doc-section-badge">Features</span>
             <h2>Flags &amp; Config</h2>
-            <p>Flags let you reference any element's value globally via <code>Heavenly.Flags["FlagName"]</code>. When <code>SaveConfig = true</code> and <code>Save = true</code> on an element, its value is written to a JSON file and auto-loaded on the next run.</p>
+            <p>Flags let you reference any element's value globally via <code>Isotope.Flags["FlagName"]</code>. When <code>SaveConfig = true</code> and <code>Save = true</code> on an element, its value is written to a JSON file and auto-loaded on the next run.</p>
             <div class="code-block">
               <div class="code-block-header"><span class="code-block-lang">lua</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-              <pre>local Window = Heavenly:Window({
+              <pre>local Window = Isotope:Window({
     Name = "My Script",
     SaveConfig = true,
     ConfigFolder = "MyScript",
@@ -1023,9 +1023,9 @@ Tab:Toggle({
     Callback = function(v) end,
 })
 
-print(Heavenly.Flags["SpeedHack"].Value)
-Heavenly.Flags["SpeedHack"]:Set(true)
-Heavenly:Init()</pre>
+print(Isotope.Flags["SpeedHack"].Value)
+Isotope.Flags["SpeedHack"]:Set(true)
+Isotope:Init()</pre>
             </div>
             <div class="callout">
               <p><strong>Common mistake:</strong> Do not pass <code>Config = true</code>. <code>Config</code> is the filename string; <code>SaveConfig</code> is the boolean toggle. Set <code>ScriptKey</code> to prevent configs from loading in other scripts.</p>
@@ -1073,17 +1073,17 @@ local CfgTab = Window:Tab({ Name = "Config", Icon = "rbxassetid://..." })</pre>
           <div class="doc-section" id="usersection">
             <span class="doc-section-badge">Features</span>
             <h2>User Section</h2>
-            <p>An optional footer at the bottom of the sidebar showing the player's avatar, display name, and username. Set <code>Heavenly.UserSection = true</code> before <code>Heavenly:Window()</code> to enable it.</p>
+            <p>An optional footer at the bottom of the sidebar showing the player's avatar, display name, and username. Set <code>Isotope.UserSection = true</code> before <code>Isotope:Window()</code> to enable it.</p>
             <div class="code-block">
               <div class="code-block-header"><span class="code-block-lang">lua</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-              <pre>Heavenly.UserSection = true
-Heavenly.UserSectionRightClick = true
+              <pre>Isotope.UserSection = true
+Isotope.UserSectionRightClick = true
 
-Heavenly.USI = {
+Isotope.USI = {
     { Name = "Discord", Callback = function() print("discord") end, Icon = "rbxassetid://4483345998" },
 }
 
-local Window = Heavenly:Window({
+local Window = Isotope:Window({
     Name = "My Script",
     ShowDisplayName = true,
     ShowUsername = true,
@@ -1122,11 +1122,11 @@ Window:SetUsername("@test")</pre>
             <h2>Owner Buttons</h2>
             <p>Custom icon buttons in the topbar to the right of tab buttons. Useful for Discord links or script-level actions. Supports an optional <code>Dropdown</code> array, when set, clicking the button opens a small dropdown menu instead of calling <code>Callback</code> directly. The selected option is passed to <code>Callback</code> as the first argument.</p>
             <div class="callout">
-              <p><strong>Must be added before <code>Heavenly:Window()</code></strong>, or call <code>Heavenly:Topbar(theme)</code> again after adding them at runtime.</p>
+              <p><strong>Must be added before <code>Isotope:Window()</code></strong>, or call <code>Isotope:Topbar(theme)</code> again after adding them at runtime.</p>
             </div>
             <div class="code-block">
               <div class="code-block-header"><span class="code-block-lang">lua</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-              <pre>Heavenly:AddOwnerButton({
+              <pre>Isotope:AddOwnerButton({
     Name = "Discord",
     Icon = "rbxassetid://4483345998",
     Tooltip  = "Join Discord",
@@ -1135,7 +1135,7 @@ Window:SetUsername("@test")</pre>
     Callback = function() Window:Toast("discord.gg/example") end
 })
 
-Heavenly:AddOwnerButton({
+Isotope:AddOwnerButton({
     Name = "Preset",
     Icon = "rbxassetid://4483345998",
     Tooltip  = "Load Preset",
@@ -1146,7 +1146,7 @@ Heavenly:AddOwnerButton({
     end
 })
 
-Heavenly:ClearOwnerButtons()</pre>
+Isotope:ClearOwnerButtons()</pre>
             </div>
             <table class="prop-table">
               <thead><tr><th>Option</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
@@ -1169,7 +1169,7 @@ Heavenly:ClearOwnerButtons()</pre>
             <p>Gate the window behind a key prompt. The prompt is animated and matches the current theme.</p>
             <div class="code-block">
               <div class="code-block-header"><span class="code-block-lang">lua</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-              <pre>local Window = Heavenly:Window({
+              <pre>local Window = Isotope:Window({
     Name = "My Script",
     KeySystem = true,
     Key = "mykey",
@@ -1299,12 +1299,12 @@ Window:SetAccentColor(Color3.fromRGB(255, 100, 0))</pre>
           <div class="doc-section" id="destroy">
             <span class="doc-section-badge">Features</span>
             <h2>Destroy</h2>
-            <p>Completely removes all Heavenly GUIs and clears all internal state. Use this before reloading a script.</p>
+            <p>Completely removes all Isotope GUIs and clears all internal state. Use this before reloading a script.</p>
             <div class="code-block">
               <div class="code-block-header"><span class="code-block-lang">lua</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-              <pre>Heavenly:Destroy()</pre>
+              <pre>Isotope:Destroy()</pre>
             </div>
-            <p>Removes: <code>HeavenlyUI</code>, <code>HeavenlyNotifications</code>, <code>HeavenlyKeybindList</code>, <code>HeavenlyTopbar</code>, <code>HeavenlyRadial</code>, <code>HeavenlyToasts</code>. Also clears all Binds, Tabs, ElementRegistry, and OwnerButtons.</p>
+            <p>Removes: <code>IsotopeUI</code>, <code>IsotopeNotifications</code>, <code>IsotopeKeybindList</code>, <code>IsotopeTopbar</code>, <code>IsotopeRadial</code>, <code>IsotopeToasts</code>. Also clears all Binds, Tabs, ElementRegistry, and OwnerButtons.</p>
             <div class="doc-divider"></div>
           </div>
 
@@ -1328,16 +1328,16 @@ Window:SetAccentColor(Color3.fromRGB(255, 100, 0))</pre>
         <div class="projects-grid">
           <div class="project-card" data-tags="open-source">
             <div class="project-card-top">
-              <span class="project-name">Heavenly UI Library</span>
-              <a class="project-github-link" href="https://github.com/HeavenlyScripts/HeavenlyScripts.github.io/" target="_blank" rel="noopener" aria-label="GitHub">↗</a>
+              <span class="project-name">Isotope UI Library</span>
+              <a class="project-github-link" href="https://github.com/Isotope/Isotope.github.io/" target="_blank" rel="noopener" aria-label="GitHub">↗</a>
             </div>
-            <p class="project-desc">The core Roblox Lua UI component library. Lightweight, composable, and fully themed. The only open-source project from HeavenlyScripts.</p>
+            <p class="project-desc">The core Roblox Lua UI component library. Lightweight, composable, and fully themed. The only open-source project from Isotope.</p>
             <div class="project-tags"><span class="tag">open-source</span><span class="tag">roblox lua</span><span class="tag">ui</span></div>
             <div class="project-footer"><span>★★★★★</span><span class="project-license-badge">MIT License + Restrictions</span></div>
           </div>
           <div class="project-card" data-tags="toolkit">
             <div class="project-card-top">
-              <span class="project-name">Heavenly Toolkit</span>
+              <span class="project-name">Isotope Toolkit</span>
               <span class="project-status-badge coming-soon">Coming Soon</span>
             </div>
             <p class="project-desc">Spoof, Uninstall Roblox, Find Directories, Multi-Instance. Will be Open-Source on Release.</p>
@@ -1383,10 +1383,10 @@ Window:SetAccentColor(Color3.fromRGB(255, 100, 0))</pre>
         </div>
       </div>
       <footer class="footer">
-        <span class="footer-brand">HeavenlyScripts</span>
+        <span class="footer-brand">Isotope</span>
         <div class="footer-links">
           <a class="footer-link" href="https://discord.gg/MERzRQ2UHn" target="_blank" rel="noopener">Discord</a>
-          <a class="footer-link" href="https://github.com/heavenlyscripts" target="_blank" rel="noopener">GitHub</a>
+          <a class="footer-link" href="https://github.com/Isotope" target="_blank" rel="noopener">GitHub</a>
         </div>
       </footer>
     </main>
@@ -1396,12 +1396,12 @@ Window:SetAccentColor(Color3.fromRGB(255, 100, 0))</pre>
         <header class="page-header">
           <span class="page-eyebrow">Developers</span>
           <h1 class="page-title">About</h1>
-          <p class="page-desc">Who's behind HeavenlyScripts and what drives the work.</p>
+          <p class="page-desc">Who's behind Isotope and what drives the work.</p>
         </header>
         <div class="about-grid">
           <div class="about-block full">
             <span class="about-block-label">Bio</span>
-            <p>We lead HeavenlyScripts, focused on building UI tooling and scripts that just work. Our projects are built with care, built to last, and made for developers and exploiters who care about quality.</p>
+            <p>We lead Isotope, focused on building UI tooling and scripts that just work. Our projects are built with care, built to last, and made for developers and exploiters who care about quality.</p>
             <p style="margin-top:0.75rem">We spend most of our time writing Lua, UI structure, and refining the gap between a functional script and a great one.</p>
           </div>
           <div class="about-block">
@@ -1425,10 +1425,10 @@ Window:SetAccentColor(Color3.fromRGB(255, 100, 0))</pre>
         </div>
       </div>
       <footer class="footer">
-        <span class="footer-brand">HeavenlyScripts</span>
+        <span class="footer-brand">Isotope</span>
         <div class="footer-links">
           <a class="footer-link" href="https://discord.gg/MERzRQ2UHn" target="_blank" rel="noopener">Discord</a>
-          <a class="footer-link" href="https://github.com/heavenlyscripts" target="_blank" rel="noopener">GitHub</a>
+          <a class="footer-link" href="https://github.com/Isotope" target="_blank" rel="noopener">GitHub</a>
         </div>
       </footer>
     </main>
@@ -1446,22 +1446,22 @@ Window:SetAccentColor(Color3.fromRGB(255, 100, 0))</pre>
             <span class="contact-card-title">Discord</span>
             <span class="contact-card-sub">discord.gg/MERzRQ2UHn</span>
           </a>
-          <a class="contact-card" href="https://github.com/heavenlyscripts" target="_blank" rel="noopener">
+          <a class="contact-card" href="https://github.com/Isotope" target="_blank" rel="noopener">
             <span class="contact-icon">◇</span>
             <span class="contact-card-title">GitHub</span>
-            <span class="contact-card-sub">github.com/heavenlyscripts</span>
+            <span class="contact-card-sub">github.com/Isotope</span>
           </a>
         </div>
         <div class="contact-terminal">
           <div class="terminal-header">
             <div class="terminal-dots"><span class="terminal-dot red"></span><span class="terminal-dot yellow"></span><span class="terminal-dot green"></span></div>
-            <span class="terminal-title">heavenly.lua</span>
+            <span class="terminal-title">Isotope.lua</span>
           </div>
           <div class="terminal-body">
             <div class="terminal-line"><span class="t-dim">-- </span><span class="t-comment">// reach out</span></div>
             <div class="terminal-line"><span class="t-keyword">local </span><span class="t-var">contact</span><span class="t-dim"> = {</span></div>
             <div class="terminal-line t-indent"><span class="t-key">Discord</span><span class="t-dim"> = </span><a href="https://discord.gg/MERzRQ2UHn" target="_blank" rel="noopener" class="t-string">"discord.gg/MERzRQ2UHn"</a><span class="t-dim">,</span></div>
-            <div class="terminal-line t-indent"><span class="t-key">GitHub</span><span class="t-dim"> = </span><a href="https://github.com/heavenlyscripts" target="_blank" rel="noopener" class="t-string">"github.com/heavenlyscripts"</a><span class="t-dim">,</span></div>
+            <div class="terminal-line t-indent"><span class="t-key">GitHub</span><span class="t-dim"> = </span><a href="https://github.com/Isotope" target="_blank" rel="noopener" class="t-string">"github.com/Isotope"</a><span class="t-dim">,</span></div>
             <div class="terminal-line t-indent"><span class="t-key">Response</span><span class="t-dim"> = </span><span class="t-string">"Usually within 24h"</span><span class="t-dim">,</span></div>
             <div class="terminal-line"><span class="t-dim">}</span></div>
             <div class="terminal-line" style="margin-top:1rem"><span class="t-keyword">return </span><span class="t-var">contact</span><span class="t-cursor"></span></div>
@@ -1469,10 +1469,10 @@ Window:SetAccentColor(Color3.fromRGB(255, 100, 0))</pre>
         </div>
       </div>
       <footer class="footer">
-        <span class="footer-brand">HeavenlyScripts</span>
+        <span class="footer-brand">Isotope</span>
         <div class="footer-links">
           <a class="footer-link" href="https://discord.gg/MERzRQ2UHn" target="_blank" rel="noopener">Discord</a>
-          <a class="footer-link" href="https://github.com/heavenlyscripts" target="_blank" rel="noopener">GitHub</a>
+          <a class="footer-link" href="https://github.com/Isotope" target="_blank" rel="noopener">GitHub</a>
         </div>
       </footer>
     </main>
