@@ -2801,28 +2801,6 @@ function Isotope:KeybindList(theme)
 	return screenGui
 end
 
-local f = {
-    "elitex scripts",
-    "ex key",
-    "ex key system",
-    "ex v1.0",
-    "ex"
-}
-
-local function b(t)
-    if not t then return false end
-
-    t = tostring(t):lower()
-
-    for _, w in ipairs(f) do
-        if string.find(t, w, 1, true) then
-            return true
-        end
-    end
-
-    return false
-end
-
 function Isotope:Window(config)
 	Isotope._initDone = false
 	config = config or {}
@@ -2853,10 +2831,6 @@ function Isotope:Window(config)
 	Isotope._MinimizedRef = nil
 
 	local windowName = config.Name or "IsotopeUI"
-	if b(windowName) then
-   		game:GetService("Players").LocalPlayer:Kick("unauthorized")
-    	return
-	end
 	local theme = Themes[config.Theme] or Themes.Dark
 	Isotope._activeTheme = theme
 	local doStartup = config.Startup or false
