@@ -165,7 +165,7 @@ local function int()
         "elitex scripts", "ex key", "ex key system", "ex v1.0",
     }
 
-    local function containsForbidden(text)
+    local function fb(text)
         if not text then return false end
         local lower = text:lower()
         for _, word in ipairs(f) do
@@ -173,46 +173,22 @@ local function int()
                 return true
             end
         end
-
         if lower == "ex" then return true end
         return false
     end
 
-    local mainWin = Isotope._MainWindowRef
-    if mainWin then
-        local titleLabel = mainWin:FindFirstChild("MainWindow") and mainWin.MainWindow or mainWin
-        local topBar = mainWin:FindFirstChildOfClass("Frame")
-        if topBar then
-            local lbl = topBar:FindFirstChildOfClass("TextLabel")
-            if lbl and containsForbidden(lbl.Text) then
-                game:GetService("Players").LocalPlayer:Kick("Unauthorized Use! Contact Ui Library Holder.")
+    local ui = Isotope and Isotope._MainWindowRef
+    if not ui then return end
+
+    for _, obj in ipairs(ui:GetDescendants()) do
+        if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
+            if fb(obj.Text) then
+                game:GetService("Players").LocalPlayer:Kick("Unauthorized use detected.")
                 return
             end
         end
     end
-
-    local function scanGui(parent)
-        for _, obj in ipairs(parent:GetDescendants()) do
-            if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
-                if containsForbidden(obj.Text) then
-                    game:GetService("Players").LocalPlayer:Kick("Unauthorized use detected.")
-                    return
-                end
-            end
-        end
-    end
-
-    pcall(scanGui, game:GetService("Players").LocalPlayer.PlayerGui)
-    pcall(scanGui, game:GetService("CoreGui"))
 end
-
-task.defer(int)
-
-task.spawn(function()
-    while task.wait(10) do
-        int()
-    end
-end)
 
 local function addPadding(parent, top, bottom, left, right)
 	local padding = Instance.new("UIPadding")
